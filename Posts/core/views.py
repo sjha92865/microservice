@@ -14,7 +14,7 @@ class PostAPIView(APIView):
     #     serializer=PostSerializer(posts,many=True)
     #     return Response(serializer.data)
     def get(self,request):
-        posts=Post.object.all()
+        posts=Post.objects.all()
         serializer=PostSerializer(posts,many=True)
         return Response(serializer.data)
 
@@ -36,6 +36,7 @@ class PostAPIView(APIView):
 
 class PostCommentAPIView(APIView):
     def post(self,request,pk=None):
+        print(pk)
         post=Post.objects.get(pk=pk)
         comments=json.loads(post.comments)
         comments.append({

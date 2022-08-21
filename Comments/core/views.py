@@ -23,10 +23,10 @@ class CommentsAPIView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         comment=serializer.data
-
-        if random.randint(1,10)<=9:
-
-
+        v=random.randint(1,10)
+        print("check",v)
+        if v<=5:
+            print("heyy")
             r=requests.post('http://127.0.0.1:8000/api/posts/%d/comments'%comment['post_id'],data={
                     'text':comment['text']
             })
